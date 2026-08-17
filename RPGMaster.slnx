@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/1 -API/">
+    <Project Path="RPGMaster/RPGMaster.csproj" />
+  </Folder>
+  <Folder Name="/2 - Service/">
+    <Project Path="RPGMaster.Service/RPGMaster.Service.csproj" />
+  </Folder>
+  <Folder Name="/3 - Data Access/">
+    <Project Path="RPGMaster.DataAccess/RPGMaster.DataAccess.csproj" />
+  </Folder>
+  <Folder Name="/4 - Model/">
+    <Project Path="RPGMaster.Model/RPGMaster.Model.csproj" />
+  </Folder>
+</Solution>
