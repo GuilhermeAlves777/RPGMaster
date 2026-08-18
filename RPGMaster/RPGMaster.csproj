@@ -33,11 +33,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\RPGMaster.DataAccess\RPGMaster.DataAccess.csproj" />
+    <ProjectReference Include="..\RPGMaster.Model\RPGMaster.Model.csproj" />
     <ProjectReference Include="..\RPGMaster.Service\RPGMaster.Service.csproj" />
   </ItemGroup>
 

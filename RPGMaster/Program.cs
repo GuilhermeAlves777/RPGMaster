@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using Microsoft.OpenApi.Models;
 using RPGMaster.DataAccess;
+using RPGMaster.DataAccess.Repositorys;
 using RPGMaster.Service;
 using System.Text;
 
@@ -40,6 +41,9 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
+
+builder.Services.AddScoped<UsuarioRepository>();
+builder.Services.AddScoped<UsuarioService>();
 
 builder.Services.AddDbContext<RPGMasterContext>(options => options.UseSqlite
     (builder.Configuration.GetConnectionString("DefaultConnection")));
