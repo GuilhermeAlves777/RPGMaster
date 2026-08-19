@@ -45,6 +45,13 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddScoped<UsuarioRepository>();
 builder.Services.AddScoped<UsuarioService>();
 
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<CampanhaService>();
+builder.Services.AddScoped<CampanhaRepository>();
+
+builder.Services.AddScoped<CampanhaJogadorService>();
+builder.Services.AddScoped<CampanhaJogadorRepository>();
+
 builder.Services.AddDbContext<RPGMasterContext>(options => options.UseSqlite
     (builder.Configuration.GetConnectionString("DefaultConnection")));
 
