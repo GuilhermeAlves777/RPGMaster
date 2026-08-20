@@ -9,11 +9,16 @@ namespace RPGMaster.Model
         public long Id_Personagem { get; set; }
         public string Nome { get; set; }
         public string Imagem { get; set; }
-
+        public int VidaAtual { get; set; }
+        public int VidaMaxima { get; set; }
+        public int ManaAtual { get; set; }
+        public int ManaMaxima { get; set; }
         public long Id_Campanha { get; set; }
         public Campanha Campanha { get; set; }
 
-        public long Id_Jogador { get; set; }
+        public bool EhNpc { get; set; }
+
+        public long? Id_Jogador { get; set; }
         public Usuario Jogador { get; set; }
 
         public long Id_Classe { get; set; }

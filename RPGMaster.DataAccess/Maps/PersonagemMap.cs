@@ -20,7 +20,7 @@ namespace RPGMaster.DataAccess.Maps
                                        .IsRequired();
             builder.Property(x => x.Nome).HasColumnName("NOME").IsRequired();
             builder.Property(x => x.Id_Campanha).HasColumnName("ID_CAMPANHA").IsRequired();
-            builder.Property(x => x.Id_Jogador).HasColumnName("ID_JOGADOR").IsRequired();
+            builder.Property(x => x.Id_Jogador).HasColumnName("ID_JOGADOR");
             builder.Property(x => x.Id_Raca).HasColumnName("ID_RACA").IsRequired();
             builder.Property(x => x.Id_Classe).HasColumnName("ID_CLASSE").IsRequired();
 
@@ -30,9 +30,9 @@ namespace RPGMaster.DataAccess.Maps
                    .OnDelete(DeleteBehavior.Cascade); // se apagar campanha, apaga os personagens dela
 
             builder.HasOne(x => x.Jogador)
-                   .WithMany()
-                   .HasForeignKey(x => x.Id_Jogador)
-                   .OnDelete(DeleteBehavior.Restrict);
+                .WithMany()
+                .HasForeignKey(x => x.Id_Jogador)
+                .OnDelete(DeleteBehavior.SetNull);
 
             builder.HasOne(x => x.Raca)
                    .WithMany()
