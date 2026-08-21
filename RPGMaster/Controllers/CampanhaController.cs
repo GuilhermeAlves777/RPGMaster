@@ -19,7 +19,7 @@ namespace RPGMaster.Controllers
         }
 
         [Authorize]
-        [HttpPost("Criar")]
+        [HttpPost("api/Campanha/Criar")]
         public IActionResult CadastrarCampanha(string nome)
         {
             var result = _campanhaService.CadastrarCampanha(nome);
@@ -29,10 +29,23 @@ namespace RPGMaster.Controllers
                 return BadRequest("Erro ao criar a campanha");
         }
 
-        [HttpGet("ObterTodos")]
+        [HttpGet("api/Campanha/ObterTodos")]
         public IActionResult ObterCampanhas()
         {
             var listaCampanhas = _campanhaService.ObterTodos();
+            if (listaCampanhas == null)
+                throw new Exception("Nenhuma campanha foi encontrada");
+
+            return Ok(listaCampanhas);
+        }
+
+        [HttpGet("api/Campanha/ObterTodosPorId")]
+        public IActionResult ObterCampanhasPorId(long id)
+        {
+            var listaCampanhas = _campanhaService.ObterPorId(id);
+            if (listaCampanhas == null)
+                throw new Exception("Nenhuma campanha foi encontrada");
+
             return Ok(listaCampanhas);
         }
     }

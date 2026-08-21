@@ -42,9 +42,15 @@ namespace RPGMaster.Service
 
         }
 
-        public List<Campanha> ObterTodos()
+        public List<CampanhaDto> ObterTodos()
         {
-            var listaCampanhas = _campanhaRepository.ObterTodos();
+            var listaCampanhas = _campanhaRepository.ObterTodas();
+            return listaCampanhas;
+        }
+
+        public List<CampanhaDto> ObterPorId(long id)
+        {
+            var listaCampanhas = _campanhaRepository.ObterPorId(id);
             return listaCampanhas;
         }
     }
