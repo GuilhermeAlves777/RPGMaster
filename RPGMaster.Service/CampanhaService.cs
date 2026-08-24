@@ -5,6 +5,7 @@ using RPGMaster.Model;
 using RPGMaster.Model.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Security.Claims;
 using System.Text;
 
@@ -41,17 +42,46 @@ namespace RPGMaster.Service
             return ret;
 
         }
-
         public List<CampanhaDto> ObterTodos()
         {
             var listaCampanhas = _campanhaRepository.ObterTodas();
             return listaCampanhas;
         }
 
-        public List<CampanhaDto> ObterPorId(long id)
+        public CampanhaDto? ObterPorId(long id)
         {
-            var listaCampanhas = _campanhaRepository.ObterPorId(id);
-            return listaCampanhas;
+            var campanha = _campanhaRepository.ObterPorId(id);
+
+            if (campanha == null)
+                throw new Exception("Essa campanha não existe");
+
+            return campanha;
+        }
+
+        public bool AtualizarCampanha (long id, string nome)
+        {
+            var campanha = _campanhaRepository.ObterPorIdSemDto(id);
+
+            if (campanha == null)
+                throw new Exception("Essa campanha não existe");
+
+            campanha.Nome = nome;
+
+            var ret = _campanhaRepository.Atualizar();
+
+            return ret;
+        }
+
+        public bool Excluir (long id)
+        {
+            var campanha = _campanhaRepository.ObterPorIdSemDto(id);
+
+            if (campanha == null)
+                throw new Exception("Não é possível excluir a campanha selecionada");
+
+            var ret = _campanhaRepository.Excluir(campanha);
+
+            return ret;
         }
     }
 }

@@ -110,7 +110,14 @@ namespace RPGMaster.Service
 
         public bool ExcluirUsuario(long id)
         {
-            throw new NotImplementedException();
+            var usu = _usuarioRepository.ObterPorId(id);
+
+            if (usu == null)
+                throw new Exception("O usuário não existe");
+
+            var ret = _usuarioRepository.Excluir(id);
+
+            return ret;
         }
     }
 }

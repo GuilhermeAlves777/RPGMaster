@@ -48,5 +48,30 @@ namespace RPGMaster.Controllers
 
             return Ok(listaCampanhas);
         }
+
+        [HttpPut("api/Campanha/Atualizar")]
+
+        public IActionResult Atualizar (long id, string nome)
+        {
+            var ret = _campanhaService.AtualizarCampanha(id, nome);
+
+            if (!ret)
+                return BadRequest("Não é possível atualizar essa campanha");
+
+            return Ok("Campanha atualizada!");
+            
+        }
+
+        [HttpDelete("api/Campanha/Excluir")]
+
+        public IActionResult ExcluirCampanha (long id)
+        {
+            var ret = _campanhaService.Excluir(id);
+
+            if (!ret)
+                return BadRequest("Não foi possível excluir a campanha");
+
+            return Ok("Campanha excluida com sucesso");
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using RPGMaster.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using RPGMaster.Model;
 using RPGMaster.Model.DTOs;
 using System;
 using System.Collections.Generic;
@@ -45,9 +46,9 @@ namespace RPGMaster.DataAccess.Repositorys
                 .ToList();
         }
 
-        public List<CampanhaDto> ObterPorId (long id)
+        public CampanhaDto? ObterPorId (long id)
         {
-            return _context.Campanhas
+            return _context.Campanhas.AsNoTracking()
                 .Where(x => x.ID_Campanha == id)
                 .Select(c => new CampanhaDto
                 {
@@ -66,7 +67,21 @@ namespace RPGMaster.DataAccess.Repositorys
                         Nome = cj.Usuario.Nome
                     }).ToList()
                 })
-                .ToList();
+                .FirstOrDefault();
+        }
+
+        public Campanha? ObterPorIdSemDto(long id) {
+            return _context.Campanhas.FirstOrDefault(x => x.ID_Campanha == id);
+        }
+
+        public bool Excluir(Campanha campanha)
+        {
+            _context.Campanhas.Remove(campanha);
+            return _context.SaveChanges() > 0;
+        }
+        public bool Atualizar()
+        {
+            return _context.SaveChanges() > 0;
         }
     }
 }
