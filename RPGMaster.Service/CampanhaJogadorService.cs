@@ -64,7 +64,7 @@ namespace RPGMaster.Service
         }
 
         public bool ExcluirJogador(long idCampanha, long idUsuario) {
-            var jogador = _campanhaJogadorRepository.ObterJogador(idCampanha, idUsuario);,
+            var jogador = _campanhaJogadorRepository.ObterJogador(idCampanha, idUsuario);
             var campanha = _campanhaRepository.ObterPorId(idCampanha);
 
             if (jogador == null)
