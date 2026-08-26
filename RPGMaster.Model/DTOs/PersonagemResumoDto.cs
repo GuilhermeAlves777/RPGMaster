@@ -8,6 +8,7 @@ namespace RPGMaster.Model.DTOs
     {
         public long Id_Personagem { get; set; }
         public string Nome { get; set; }
+        public int Nivel { get; set; }
         public bool EhNpc { get; set; }
     }
 }

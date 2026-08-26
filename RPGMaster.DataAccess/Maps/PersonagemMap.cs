@@ -21,6 +21,7 @@ namespace RPGMaster.DataAccess.Maps
             builder.Property(x => x.Nome).HasColumnName("NOME").IsRequired();
             builder.Property(x => x.Id_Campanha).HasColumnName("ID_CAMPANHA").IsRequired();
             builder.Property(x => x.Id_Jogador).HasColumnName("ID_JOGADOR");
+            builder.Property(x => x.Nivel).HasColumnName("NIVEL").IsRequired();
             builder.Property(x => x.Id_Raca).HasColumnName("ID_RACA").IsRequired();
             builder.Property(x => x.Id_Classe).HasColumnName("ID_CLASSE").IsRequired();
 
