@@ -52,6 +52,9 @@ builder.Services.AddScoped<CampanhaRepository>();
 builder.Services.AddScoped<CampanhaJogadorService>();
 builder.Services.AddScoped<CampanhaJogadorRepository>();
 
+builder.Services.AddScoped<PersonagemService>();
+builder.Services.AddScoped<PersonagemRepository>();
+
 builder.Services.AddDbContext<RPGMasterContext>(options => options.UseSqlite
     (builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -91,7 +94,13 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(
+        c =>
+        {
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "RPGMaster API v1");
+            c.EnableFilter();   
+        }
+    );
 }
 
 app.UseHttpsRedirection();

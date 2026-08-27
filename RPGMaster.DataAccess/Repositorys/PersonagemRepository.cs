@@ -20,9 +20,9 @@ namespace RPGMaster.DataAccess.Repositorys
             return listaPersonagens;
         }
 
-        public Personagem? ObterPorId(long id)
+        public Personagem? ObterPorId(long id, long idCampanha)
         {
-            var personagem = _context.Personagens.Where(p => p.Id_Personagem == id).FirstOrDefault();
+            var personagem = _context.Personagens.Where(p => p.Id_Personagem == id && p.Id_Campanha == idCampanha).FirstOrDefault();
             return personagem;
         }
 
@@ -37,17 +37,15 @@ namespace RPGMaster.DataAccess.Repositorys
             return _context.SaveChanges() > 0;
         }
 
-        public bool ExcluirPersonagem(long id)
+        public bool ExcluirPersonagem(long idPersonagem, long idCampanha)
         {
-            var personagem = _context.Personagens.Where(p => p.Id_Personagem == id).FirstOrDefault();
+            var personagem = _context.Personagens.Where(p => p.Id_Personagem == idPersonagem && p.Id_Campanha == idCampanha).FirstOrDefault();
             _context.Personagens.Remove(personagem);
 
             return _context.SaveChanges() > 0;
         }
 
-        public Personagem ObterPersonagemPorJogador
-
-        public bool PossuiPersonagem (long idJogador, int vidaAtual)
+        public bool PossuiPersonagem (long idJogador, long vidaAtual)
         {
             return _context.Personagens.Any(p => p.Id_Jogador == idJogador && p.VidaAtual == vidaAtual);
         }
