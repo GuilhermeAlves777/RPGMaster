@@ -55,6 +55,12 @@ builder.Services.AddScoped<CampanhaJogadorRepository>();
 builder.Services.AddScoped<PersonagemService>();
 builder.Services.AddScoped<PersonagemRepository>();
 
+builder.Services.AddScoped<RacaService>();
+builder.Services.AddScoped<RacaRepository>();
+
+builder.Services.AddScoped<ClasseService>();
+builder.Services.AddScoped<ClasseRepository>();
+
 builder.Services.AddDbContext<RPGMasterContext>(options => options.UseSqlite
     (builder.Configuration.GetConnectionString("DefaultConnection")));
 

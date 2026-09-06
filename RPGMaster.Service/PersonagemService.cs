@@ -9,10 +9,12 @@ namespace RPGMaster.Service
     public class PersonagemService
     {
         private readonly PersonagemRepository _personagemRepository;
+        private readonly CampanhaJogadorRepository _campanhaJogadorRepository;
 
-        public PersonagemService (PersonagemRepository personagemRepository)
+        public PersonagemService (PersonagemRepository personagemRepository, CampanhaJogadorRepository campanhaJogadorRepository)
         {
             _personagemRepository = personagemRepository;
+            _campanhaJogadorRepository = campanhaJogadorRepository;
         }
 
         public List<Personagem> ObterTodos()
@@ -21,10 +23,14 @@ namespace RPGMaster.Service
             return listaPersonagens;
         }
 
-        public bool CriarPersonagem (string nome, int nivel, long idJogador, int vidaMaxima, int ManaMaxima, long idCampanha)
+        public bool CriarPersonagem (string nome, int nivel, long idJogador, int vidaMaxima, int ManaMaxima, long idCampanha, long idRaca, long idClasse)
         {
             if (nome == "") throw new Exception("O personagem precisa ter um nome");
             if (nivel <= 0) throw new Exception("O nível do personagem tem que ser maior que 0");
+
+            var existeCampanhaJogador = _campanhaJogadorRepository.ObterJogador(idCampanha, idJogador);
+
+            if (existeCampanhaJogador == null) throw new Exception("Esse jogador não está na campanha"); 
 
             var personagem = new Personagem
             {
@@ -35,6 +41,8 @@ namespace RPGMaster.Service
                 VidaAtual = vidaMaxima,
                 ManaMaxima = ManaMaxima,
                 ManaAtual = ManaMaxima,
+                Id_Raca = idRaca,
+                Id_Classe = idClasse,
                 EhNpc = idJogador == 0 ? true : false
             };
 
