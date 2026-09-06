@@ -17,9 +17,9 @@ namespace RPGMaster.Service
             _campanhaJogadorRepository = campanhaJogadorRepository;
         }
 
-        public List<Personagem> ObterTodos()
+        public List<Personagem> ObterTodos(long idCampanha)
         {
-            var listaPersonagens = _personagemRepository.ObterTodos();
+            var listaPersonagens = _personagemRepository.ObterTodos(idCampanha);
             return listaPersonagens;
         }
 

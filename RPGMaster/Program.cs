@@ -61,6 +61,15 @@ builder.Services.AddScoped<RacaRepository>();
 builder.Services.AddScoped<ClasseService>();
 builder.Services.AddScoped<ClasseRepository>();
 
+builder.Services.AddScoped<AtributoService>();
+builder.Services.AddScoped<AtributoRepository>();
+
+builder.Services.AddScoped<ItemService>();
+builder.Services.AddScoped<ItemRepository>();
+
+builder.Services.AddScoped<MagiaService>();
+builder.Services.AddScoped<MagiaRepository>();
+
 builder.Services.AddDbContext<RPGMasterContext>(options => options.UseSqlite
     (builder.Configuration.GetConnectionString("DefaultConnection")));
 

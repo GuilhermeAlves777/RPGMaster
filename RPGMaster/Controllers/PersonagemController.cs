@@ -20,9 +20,9 @@ namespace RPGMaster.Controllers
 
         [HttpGet("api/Personagem/ObterTodos")]
 
-        public IActionResult ObterTodos()
+        public IActionResult ObterTodos(long idCampanha)
         {
-            var result = _personagemService.ObterTodos();
+            var result = _personagemService.ObterTodos(idCampanha);
             if (result != null)
                 return Ok(result);
             else

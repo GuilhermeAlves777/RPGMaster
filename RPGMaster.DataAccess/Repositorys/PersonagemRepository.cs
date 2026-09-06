@@ -14,9 +14,9 @@ namespace RPGMaster.DataAccess.Repositorys
             _context = context;
         }
 
-        public List<Personagem> ObterTodos()
+        public List<Personagem> ObterTodos(long idCampanha)
         {
-            var listaPersonagens = _context.Personagens.ToList();
+            var listaPersonagens = _context.Personagens.Where(p => p.Id_Campanha == idCampanha).ToList();
             return listaPersonagens;
         }
 
@@ -40,6 +40,8 @@ namespace RPGMaster.DataAccess.Repositorys
         public bool ExcluirPersonagem(long idPersonagem, long idCampanha)
         {
             var personagem = _context.Personagens.Where(p => p.Id_Personagem == idPersonagem && p.Id_Campanha == idCampanha).FirstOrDefault();
+
+            if (personagem == null) throw new NullReferenceException("Personagem não existe");
             _context.Personagens.Remove(personagem);
 
             return _context.SaveChanges() > 0;
