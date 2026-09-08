@@ -70,6 +70,15 @@ builder.Services.AddScoped<ItemRepository>();
 builder.Services.AddScoped<MagiaService>();
 builder.Services.AddScoped<MagiaRepository>();
 
+builder.Services.AddScoped<PersonagemAtributoService>();
+builder.Services.AddScoped<PersonagemAtributoRepository>();
+
+builder.Services.AddScoped<PersonagemPericiaService>();
+builder.Services.AddScoped<PersonagemPericiaRepository>();
+
+builder.Services.AddScoped<PericiaService>();
+builder.Services.AddScoped<PericiaRepository>();
+
 builder.Services.AddDbContext<RPGMasterContext>(options => options.UseSqlite
     (builder.Configuration.GetConnectionString("DefaultConnection")));
 

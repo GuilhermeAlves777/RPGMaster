@@ -26,8 +26,8 @@ namespace RPGMaster.DataAccess.Repositorys
                 }).ToList();
         }
 
-        public Atributo? ObterEntidadePorId(long id) =>
-            _context.Atributos.FirstOrDefault(a => a.Id_Atributo == id);
+        public Atributo? ObterEntidadePorId(long id, long idCampanha) =>
+            _context.Atributos.FirstOrDefault(a => a.Id_Atributo == id && a.Id_Campanha == idCampanha);
 
         public bool Cadastrar(Atributo atributo)
         {

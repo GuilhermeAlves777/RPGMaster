@@ -25,9 +25,9 @@ namespace RPGMaster.Service
             return _atributoRepository.Cadastrar(atributo);
         }
 
-        public bool Atualizar(long id, string? nome, int? valorPadrao)
+        public bool Atualizar(long id, long idCampanha, string? nome, int? valorPadrao)
         {
-            var atributo = _atributoRepository.ObterEntidadePorId(id)
+            var atributo = _atributoRepository.ObterEntidadePorId(id, idCampanha)
                 ?? throw new Exception("Esse atributo não existe");
 
             if (nome != null) atributo.Nome = nome;
