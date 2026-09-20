@@ -36,9 +36,9 @@ namespace RPGMaster.Service
             return _atributoRepository.Atualizar();
         }
 
-        public bool Deletar(long id)
+        public bool Deletar(long id, long idCampanha)
         {
-            var atributo = _atributoRepository.ObterEntidadePorId(id)
+            var atributo = _atributoRepository.ObterEntidadePorId(id, idCampanha)
                 ?? throw new Exception("Esse atributo não existe");
 
             return _atributoRepository.Deletar(atributo);

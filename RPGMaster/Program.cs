@@ -76,6 +76,12 @@ builder.Services.AddScoped<PersonagemAtributoRepository>();
 builder.Services.AddScoped<PersonagemPericiaService>();
 builder.Services.AddScoped<PersonagemPericiaRepository>();
 
+builder.Services.AddScoped<PersonagemMagiaService>();
+builder.Services.AddScoped<PersonagemMagiaRepository>();
+
+builder.Services.AddScoped<PersonagemItemService>();
+builder.Services.AddScoped<PersonagemItemRepository>();
+
 builder.Services.AddScoped<PericiaService>();
 builder.Services.AddScoped<PericiaRepository>();
 

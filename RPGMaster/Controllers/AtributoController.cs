@@ -24,16 +24,16 @@ namespace RPGMaster.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Atualizar(long id, [FromBody] AtualizarAtributoRequest request)
+        public IActionResult Atualizar(long id, long idCampanha, [FromBody] AtualizarAtributoRequest request)
         {
-            var ret = _atributoService.Atualizar(id, request.Nome, request.ValorPadrao);
+            var ret = _atributoService.Atualizar(id, idCampanha, request.Nome, request.ValorPadrao);
             return ret ? Ok("Atributo atualizado!") : BadRequest("Não foi possível atualizar o atributo");
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Deletar(long id)
+        public IActionResult Deletar(long id, long idCampanha)
         {
-            var ret = _atributoService.Deletar(id);
+            var ret = _atributoService.Deletar(id, idCampanha);
             return ret ? Ok("Atributo removido!") : BadRequest("Não foi possível remover o atributo");
         }
     }
