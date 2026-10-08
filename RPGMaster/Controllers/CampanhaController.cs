@@ -49,6 +49,17 @@ namespace RPGMaster.Controllers
             return Ok(listaCampanhas);
         }
 
+        [HttpGet("api/Campanha/ObterPorJogador")]
+
+        public IActionResult ObterPorJogador(long idJogador)
+        {
+            var listaCampanhas = _campanhaService.ObterPorJogador(idJogador);
+            if (listaCampanhas == null) BadRequest("Nenhuma campanha foi encontrada");
+
+            return Ok(listaCampanhas);
+        }
+
+
         [HttpPut("api/Campanha/Atualizar")]
 
         public IActionResult Atualizar (long id, string nome)

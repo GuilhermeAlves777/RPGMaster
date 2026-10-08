@@ -70,6 +70,35 @@ namespace RPGMaster.DataAccess.Repositorys
                 .FirstOrDefault();
         }
 
+        public List<CampanhaDto> ObterPorJogador(long idJogador)
+        {
+            return _context.Campanhas.AsNoTracking()
+                .Where(c => c.CampanhaJogadores.Any(cj => cj.Id_Usuario == idJogador || c.ID_Criador == idJogador))
+                .Select(c => new CampanhaDto
+                {
+                    Id_Campanha = c.ID_Campanha,
+                    Nome = c.Nome,
+                    Id_Criador = c.ID_Criador,
+                    Personagens = c.Personagens.Select(p => new PersonagemResumoDto
+                    {
+                        Id_Personagem = p.Id_Personagem,
+                        Nome = p.Nome,
+                        EhNpc = p.EhNpc,
+                        Nivel = p.Nivel,
+                        vidaMaxima = p.VidaMaxima,
+                        vidaAtual = p.VidaMaxima,
+                        manaMaxima = p.ManaMaxima,
+                        manaAtual = p.ManaAtual
+                    }).ToList(),
+                    Jogadores = c.CampanhaJogadores.Select(cj => new JogadorResumoDto
+                    {
+                        Id_Usuario = cj.Id_Usuario,
+                        Nome = cj.Usuario.Nome
+                    }).ToList()
+                })
+                .ToList();
+        }
+
         public Campanha? ObterPorIdSemDto(long id) {
             return _context.Campanhas.FirstOrDefault(x => x.ID_Campanha == id);
         }

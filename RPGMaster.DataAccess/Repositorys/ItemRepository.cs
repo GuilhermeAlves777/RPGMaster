@@ -28,8 +28,8 @@ namespace RPGMaster.DataAccess.Repositorys
                 }).ToList();
         }
 
-        public Item? ObterEntidadePorId(long id) =>
-            _context.Itens.FirstOrDefault(i => i.Id_Item == id);
+        public Item? ObterEntidadePorId(long id, long idCampanha) =>
+            _context.Itens.FirstOrDefault(i => i.Id_Item == id && i.Id_Campanha == idCampanha);
 
         public bool Cadastrar(Item item)
         {

@@ -25,16 +25,16 @@ namespace RPGMaster.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Atualizar(long id, [FromBody] AtualizarItemRequest request)
+        public IActionResult Atualizar(long id, long idCampanha, [FromBody] AtualizarItemRequest request)
         {
-            var ret = _itemService.Atualizar(id, request.Nome, request.Tipo, request.Descricao, request.Imagem);
+            var ret = _itemService.Atualizar(id, idCampanha, request.Nome, request.Tipo, request.Descricao, request.Imagem);
             return ret ? Ok("Item atualizado!") : BadRequest("Não foi possível atualizar o item");
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Deletar(long id)
+        public IActionResult Deletar(long id, long idCampanha)
         {
-            var ret = _itemService.Deletar(id);
+            var ret = _itemService.Deletar(id, idCampanha);
             return ret ? Ok("Item removido!") : BadRequest("Não foi possível remover o item");
         }
     }

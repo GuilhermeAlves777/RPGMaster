@@ -67,6 +67,9 @@ builder.Services.AddScoped<AtributoRepository>();
 builder.Services.AddScoped<ItemService>();
 builder.Services.AddScoped<ItemRepository>();
 
+builder.Services.AddScoped<ItemAtributoService>();
+builder.Services.AddScoped<ItemAtributoRepository>();
+
 builder.Services.AddScoped<MagiaService>();
 builder.Services.AddScoped<MagiaRepository>();
 
@@ -91,7 +94,7 @@ builder.Services.AddDbContext<RPGMasterContext>(options => options.UseSqlite
 var key = Encoding.ASCII.GetBytes(Key.Secret);
 
 builder.Services.AddAuthentication(x =>
-{
+{   
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(x =>
@@ -101,7 +104,7 @@ builder.Services.AddAuthentication(x =>
     x.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(key),
+        IssuerSigningKey = new SymmetricSecurityKey(key),   
         ValidateIssuer = false,
         ValidateAudience = false
     };
@@ -119,6 +122,12 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<RPGMasterContext>();
+    context.Database.ExecuteSqlRaw("PRAGMA journal_mode=WAL;");
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

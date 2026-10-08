@@ -28,9 +28,9 @@ namespace RPGMaster.Service
             return _itemRepository.Cadastrar(item);
         }
 
-        public bool Atualizar(long id, string? nome, TiposEnum tipo, string? descricao, string? imagem)
+        public bool Atualizar(long id, long idCampanha, string? nome, TiposEnum tipo, string? descricao, string? imagem)
         {
-            var item = _itemRepository.ObterEntidadePorId(id)
+            var item = _itemRepository.ObterEntidadePorId(id, idCampanha)
                 ?? throw new Exception("Esse item não existe");
 
             if (nome != null) item.Nome = nome;
@@ -41,9 +41,9 @@ namespace RPGMaster.Service
             return _itemRepository.Atualizar();
         }
 
-        public bool Deletar(long id)
+        public bool Deletar(long id, long idCampanha)
         {
-            var item = _itemRepository.ObterEntidadePorId(id)
+            var item = _itemRepository.ObterEntidadePorId(id, idCampanha)
                 ?? throw new Exception("Esse item não existe");
 
             return _itemRepository.Deletar(item);

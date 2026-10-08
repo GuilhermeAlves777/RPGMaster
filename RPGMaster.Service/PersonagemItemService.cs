@@ -26,7 +26,7 @@ namespace RPGMaster.Service
         public bool Adicionar (long idPersonagem, long idCampanha, long idItem, int quant)
         {
             var p = _personagemRepository.ObterPorId(idPersonagem, idCampanha);
-            var i = _itemRepository.ObterEntidadePorId(idItem);
+            var i = _itemRepository.ObterEntidadePorId(idItem, idCampanha);
 
             if (p == null || i == null) throw new Exception("O personagem ou o item não existem");
 
@@ -47,7 +47,7 @@ namespace RPGMaster.Service
 
             if (quant != pi.Quantidade) pi.Quantidade = quant;
 
-            if (pi.Quantidade <= 0) Excluir(idPersonagem, idItem);
+            if (pi.Quantidade <= 0) return Excluir(idPersonagem, idItem);
 
             return _repository.EditarQuantidade();
         }

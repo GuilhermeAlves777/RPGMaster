@@ -43,6 +43,7 @@ namespace RPGMaster.Service
                 ManaAtual = ManaMaxima,
                 Id_Raca = idRaca,
                 Id_Classe = idClasse,
+                Nivel = nivel,
                 EhNpc = idJogador == 0 ? true : false
             };
 

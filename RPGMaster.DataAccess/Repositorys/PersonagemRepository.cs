@@ -20,6 +20,7 @@ namespace RPGMaster.DataAccess.Repositorys
             return listaPersonagens;
         }
 
+
         public Personagem? ObterPorId(long id, long idCampanha)
         {
             var personagem = _context.Personagens.Where(p => p.Id_Personagem == id && p.Id_Campanha == idCampanha).FirstOrDefault();

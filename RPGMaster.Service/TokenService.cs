@@ -19,7 +19,8 @@ namespace RPGMaster.Service
             {
                 Subject = new System.Security.Claims.ClaimsIdentity(new Claim[] {
                     new Claim(ClaimTypes.NameIdentifier, usuario.Id_Usuario.ToString()),
-                }),
+                    new Claim(ClaimTypes.Name, usuario.Nome), // ajuste ao campo do seu model
+            }),
 
                 Expires = DateTime.UtcNow.AddHours(3),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

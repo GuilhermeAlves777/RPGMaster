@@ -14,12 +14,14 @@ namespace RPGMaster.Service
     public class CampanhaService
     {
         private readonly CampanhaRepository _campanhaRepository;
+        private readonly UsuarioRepository _usuarioRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public CampanhaService (CampanhaRepository campanhaRepository, IHttpContextAccessor httpContextAccessor)
+        public CampanhaService (CampanhaRepository campanhaRepository, IHttpContextAccessor httpContextAccessor, UsuarioRepository usuarioRepository)
         {
             _campanhaRepository = campanhaRepository;
             _httpContextAccessor = httpContextAccessor;
+            _usuarioRepository = usuarioRepository;
         }
 
         public bool CadastrarCampanha(string nome)
@@ -47,6 +49,9 @@ namespace RPGMaster.Service
             var listaCampanhas = _campanhaRepository.ObterTodas();
             return listaCampanhas;
         }
+
+        public List<CampanhaDto> ObterPorJogador (long idJogador) =>
+            _campanhaRepository.ObterPorJogador(idJogador);
 
         public CampanhaDto? ObterPorId(long id)
         {
