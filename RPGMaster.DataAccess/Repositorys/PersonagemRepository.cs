@@ -1,4 +1,6 @@
-﻿using RPGMaster.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using RPGMaster.Model;
+using RPGMaster.Model.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,6 +27,40 @@ namespace RPGMaster.DataAccess.Repositorys
         {
             var personagem = _context.Personagens.Where(p => p.Id_Personagem == id && p.Id_Campanha == idCampanha).FirstOrDefault();
             return personagem;
+        }
+
+        public PersonagemDetalheDto? ObterPorIdFront(long idPersonagem, long idCampanha)
+        {
+            return _context.Personagens.AsNoTracking()
+                .Where(p => p.Id_Personagem == idPersonagem && p.Id_Campanha == idCampanha)
+                .Select(pd => new PersonagemDetalheDto
+                {
+                    Id_Campanha = pd.Id_Campanha,
+                    Id_Personagem = pd.Id_Personagem,
+                    Nome = pd.Nome,
+                    Nivel = pd.Nivel,
+                    EhNpc = pd.EhNpc,
+                    Id_Jogador = pd.Id_Jogador,
+                    NomeJogador = pd.Jogador != null ? pd.Jogador.Nome : null,
+                    vidaMaxima = pd.VidaMaxima,
+                    vidaAtual = pd.VidaAtual,
+                    manaAtual = pd.ManaAtual,
+                    manaMaxima = pd.ManaMaxima,
+                    Imagem = pd.Imagem,
+                    Atributos = pd.Atributos
+                    .Select(a => new AtributoDto
+                    {
+                        Id_Atributo = a.Id_Atributo,
+                        Nome = a.Atributo.Nome,
+                        Valor_Padrao = a.Valor
+                    }).ToList(),
+                    Classe = new Classe
+                    {
+                        Id_Classe = pd.Classe.Id_Classe,
+                        Nome = pd.Classe.Nome,
+                        Descricao = pd.Classe.Descricao
+                    }
+                }).FirstOrDefault();
         }
 
         public bool CriarPersonagem(Personagem persona)

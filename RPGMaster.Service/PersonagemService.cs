@@ -1,5 +1,6 @@
 ﻿using RPGMaster.DataAccess.Repositorys;
 using RPGMaster.Model;
+using RPGMaster.Model.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,6 +23,9 @@ namespace RPGMaster.Service
             var listaPersonagens = _personagemRepository.ObterTodos(idCampanha);
             return listaPersonagens;
         }
+
+        public PersonagemDetalheDto? ObterPorId(long idPersonagem, long idCampanha) =>
+            _personagemRepository.ObterPorIdFront(idPersonagem, idCampanha);
 
         public bool CriarPersonagem (string nome, int nivel, long idJogador, int vidaMaxima, int ManaMaxima, long idCampanha, long idRaca, long idClasse)
         {
@@ -80,6 +84,40 @@ namespace RPGMaster.Service
                     throw new Exception("A mana máxima tem que ser maior que 0");
                 personagem.ManaMaxima = manaMaxima.Value;
             }
+
+            return _personagemRepository.EditarPersonagem();
+        }
+
+        public bool AlterarVida (long idCampanha, long idPersonagem, int? vidaAtual)
+        {
+            var personagem = _personagemRepository.ObterPorId(idPersonagem, idCampanha);
+            if (personagem == null)
+                throw new Exception("Esse personagem não existe");
+
+            if (!vidaAtual.HasValue)
+                throw new Exception("Necessita colocar um valor");
+
+            if (vidaAtual > personagem.VidaMaxima)
+                throw new Exception("O numero inserido sobresai a vida máxima definida para o personagem");
+
+            personagem.VidaAtual = vidaAtual.Value;
+
+            return _personagemRepository.EditarPersonagem();
+        }
+
+        public bool AlterarMana(long idCampanha, long idPersonagem, int? manaAtual)
+        {
+            var personagem = _personagemRepository.ObterPorId(idPersonagem, idCampanha);
+            if (personagem == null)
+                throw new Exception("Esse personagem não existe");
+
+            if (!manaAtual.HasValue)
+                throw new Exception("Necessita colocar um valor");
+
+            if (manaAtual > personagem.ManaMaxima)
+                throw new Exception("O numero inserido sobresai a mana máxima definida para o personagem");
+
+            personagem.ManaAtual = manaAtual.Value;
 
             return _personagemRepository.EditarPersonagem();
         }

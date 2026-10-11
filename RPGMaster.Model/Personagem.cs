@@ -9,7 +9,7 @@ namespace RPGMaster.Model
         public long Id_Personagem { get; set; }
         public string Nome { get; set; }
         public int Nivel { get; set; }
-        public string Imagem { get; set; }
+        public string? Imagem { get; set; }
         public int VidaAtual { get; set; }
         public int VidaMaxima { get; set; }
         public int ManaAtual { get; set; }
