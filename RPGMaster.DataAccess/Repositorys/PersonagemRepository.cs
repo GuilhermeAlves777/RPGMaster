@@ -48,18 +48,39 @@ namespace RPGMaster.DataAccess.Repositorys
                     manaMaxima = pd.ManaMaxima,
                     Imagem = pd.Imagem,
                     Atributos = pd.Atributos
-                    .Select(a => new AtributoDto
+                    .Select(a => new PersonagemAtributoDto
                     {
                         Id_Atributo = a.Id_Atributo,
                         Nome = a.Atributo.Nome,
-                        Valor_Padrao = a.Valor
+                        Valor = a.Valor
                     }).ToList(),
                     Classe = new Classe
                     {
                         Id_Classe = pd.Classe.Id_Classe,
                         Nome = pd.Classe.Nome,
                         Descricao = pd.Classe.Descricao
-                    }
+                    },
+                    Itens = pd.Itens.Select(i => new PersonagemItemDto
+                    {
+                        Id_Item = i.Id_Item,
+                        Nome = i.Item.Nome,
+                        Imagem = i.Item.Imagem,
+                        Quantidade = i.Quantidade
+                    }).ToList(),
+                    Pericias = pd.Pericias
+                    .Select(p => new PersonagemPericiaDto
+                    {
+                        Id_Pericia = p.Id_Pericia,
+                        Nome = p.Pericia.Nome,
+                        Valor = p.Valor
+                    }).ToList(),
+                    Magias = pd.Magias
+                    .Select( m => new PersonagemMagiaDto
+                    {
+                        Id_Magia = m.Id_Magia,
+                        Nome = m.Magia.Nome,
+                        Dados = m.Magia.Dados
+                    }).ToList()
                 }).FirstOrDefault();
         }
 

@@ -18,7 +18,10 @@ namespace RPGMaster.Model.DTOs
         public int manaMaxima { get; set; }
         public int manaAtual { get; set; }
         public string? Imagem { get; set; }
-        public List<AtributoDto> Atributos { get; set; }
+        public List<PersonagemAtributoDto> Atributos { get; set; }
+        public List<PersonagemPericiaDto> Pericias { get; set; }
+        public List<PersonagemMagiaDto> Magias { get; set; }
         public Classe Classe { get; set; }
+        public List<PersonagemItemDto> Itens { get; set; }
     }
 }

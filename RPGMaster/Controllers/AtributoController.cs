@@ -12,25 +12,25 @@ namespace RPGMaster.Controllers
 
         public AtributoController(AtributoService atributoService) => _atributoService = atributoService;
 
-        [HttpGet("campanha/{idCampanha}")]
+        [HttpGet("ObterPorCampanha")]
         public IActionResult ObterPorCampanha(long idCampanha) =>
             Ok(_atributoService.ObterPorCampanha(idCampanha));
 
-        [HttpPost]
+        [HttpPost("Adicionar")]
         public IActionResult Cadastrar([FromBody] CadastrarAtributoRequest request)
         {
             var ret = _atributoService.Cadastrar(request.Nome, request.ValorPadrao, request.IdCampanha);
             return ret ? Ok("Atributo cadastrado!") : BadRequest("Não foi possível cadastrar o atributo");
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("Editar")]
         public IActionResult Atualizar(long id, long idCampanha, [FromBody] AtualizarAtributoRequest request)
         {
             var ret = _atributoService.Atualizar(id, idCampanha, request.Nome, request.ValorPadrao);
             return ret ? Ok("Atributo atualizado!") : BadRequest("Não foi possível atualizar o atributo");
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Excluir")]
         public IActionResult Deletar(long id, long idCampanha)
         {
             var ret = _atributoService.Deletar(id, idCampanha);

@@ -54,7 +54,6 @@ namespace RPGMaster.Controllers
 
         [HttpPut("api/Personagem/EditarPersonagem")]
 
-        [HttpPut("EditarPersonagem")]
         public IActionResult EditarPersonagem([FromBody] EditarPersonagemRequest request)
         {
             var result = _personagemService.EditarPersonagem(

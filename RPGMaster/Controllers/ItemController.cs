@@ -13,25 +13,25 @@ namespace RPGMaster.Controllers
 
         public ItemController(ItemService itemService) => _itemService = itemService;
 
-        [HttpGet("campanha/{idCampanha}")]
+        [HttpGet("ObterPorCampanha")]
         public IActionResult ObterPorCampanha(long idCampanha) =>
             Ok(_itemService.ObterPorCampanha(idCampanha));
 
-        [HttpPost]
+        [HttpPost("Adicionar")]
         public IActionResult Cadastrar([FromBody] CadastrarItemRequest request)
         {
             var ret = _itemService.Cadastrar(request.Nome, request.Tipo, request.Descricao, request.Imagem, request.IdCampanha);
             return ret ? Ok("Item cadastrado!") : BadRequest("Não foi possível cadastrar o item");
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("Editar")]
         public IActionResult Atualizar(long id, long idCampanha, [FromBody] AtualizarItemRequest request)
         {
             var ret = _itemService.Atualizar(id, idCampanha, request.Nome, request.Tipo, request.Descricao, request.Imagem);
             return ret ? Ok("Item atualizado!") : BadRequest("Não foi possível atualizar o item");
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("Excluir")]
         public IActionResult Deletar(long id, long idCampanha)
         {
             var ret = _itemService.Deletar(id, idCampanha);

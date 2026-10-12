@@ -8,10 +8,8 @@ namespace RPGMaster.Model
     {
         public long Id_Personagem { get; set; }
         public Personagem Personagem { get; set; }
-
         public long Id_Item { get; set; }
         public Item Item { get; set; }
-
         public int Quantidade { get; set; }
     }
 }

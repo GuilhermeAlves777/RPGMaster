@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace RPGMaster.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class PersonagemMagiaController : ControllerBase

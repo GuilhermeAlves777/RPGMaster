@@ -15,25 +15,25 @@ namespace RPGMaster.Controllers
         public PersonagemPericiaController(PersonagemPericiaService personagemPericiaService) =>
             _personagemPericiaService = personagemPericiaService;
 
-        [HttpGet("personagem/{idPersonagem}")]
+        [HttpGet("ObterTodos")]
         public IActionResult ObterTodos(long idPersonagem) =>
             Ok(_personagemPericiaService.ObterTodos(idPersonagem));
 
-        [HttpPost]
+        [HttpPost("Adicionar")]
         public IActionResult Adicionar([FromBody] AdicionarPersonagemPericiaRequest request)
         {
             var ret = _personagemPericiaService.Adicionar(request.IdPersonagem, request.IdPericia, request.IdCampanha, request.Valor);
             return ret ? Ok("Perícia adicionada ao personagem!") : BadRequest("Não foi possível adicionar a perícia");
         }
 
-        [HttpPut]
+        [HttpPut("Editar")]
         public IActionResult Editar([FromBody] EditarPersonagemPericiaRequest request)
         {
             var ret = _personagemPericiaService.Editar(request.IdPersonagem, request.IdCampanha, request.IdPericia, request.Valor);
             return ret ? Ok("Perícia atualizada!") : BadRequest("Não foi possível atualizar a perícia");
         }
 
-        [HttpDelete("{idPersonagem}/{idPericia}")]
+        [HttpDelete("Excluir")]
         public IActionResult Excluir(long idPersonagem, long idPericia)
         {
             var ret = _personagemPericiaService.Excluir(idPersonagem, idPericia);

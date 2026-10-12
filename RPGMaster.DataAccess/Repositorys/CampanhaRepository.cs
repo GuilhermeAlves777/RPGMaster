@@ -86,7 +86,7 @@ namespace RPGMaster.DataAccess.Repositorys
                         EhNpc = p.EhNpc,
                         Nivel = p.Nivel,
                         vidaMaxima = p.VidaMaxima,
-                        vidaAtual = p.VidaMaxima,
+                        vidaAtual = p.VidaAtual,
                         manaMaxima = p.ManaMaxima,
                         manaAtual = p.ManaAtual
                     }).ToList(),

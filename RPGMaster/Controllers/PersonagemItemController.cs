@@ -7,7 +7,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace RPGMaster.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class PersonagemItemController : ControllerBase
@@ -34,6 +34,14 @@ namespace RPGMaster.Controllers
             return ret ? Ok("Item recebido pelo personagem") : BadRequest("Não foi possível o personagem obter o item"); 
         }
 
+        [HttpPut("Editar")]
+        public IActionResult Editar([FromBody] EditarItemRequest request)
+        {
+            var ret = _service.Editar(request.idPersonagem, request.idItem, request.quant);
+
+            return ret ? Ok("Item editado") : BadRequest("Não foi possível editar o item");
+        }
+
         [HttpDelete("Excluir")]
         public IActionResult Excluir (long idPersonagem, long idItem)
         {
@@ -41,5 +49,12 @@ namespace RPGMaster.Controllers
 
             return ret ? Ok("O personagem não possui mais esse item") : BadRequest("Não foi possível excluir o item do personagem");
         }       
+    }
+
+    public class EditarItemRequest
+    {
+        public long idPersonagem { get; set; }
+        public long idItem { get; set; }
+        public int quant { get; set; }
     }
 }
