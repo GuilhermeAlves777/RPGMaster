@@ -11,6 +11,7 @@ namespace RPGMaster.DataAccess
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Campanha> Campanhas { get; set; }
         public DbSet<Campanha_Jogador> CampanhaJogadores { get; set; }
+        public DbSet<Convite> Convite { get; set; }
         public DbSet<Personagem> Personagens { get; set; }
         public DbSet<Atributo> Atributos { get; set; }
         public DbSet<Pericia> Pericias { get; set; }
@@ -34,6 +35,7 @@ namespace RPGMaster.DataAccess
 
             modelBuilder.ApplyConfiguration(new UsuarioMap());
             modelBuilder.ApplyConfiguration(new CampanhaMap());
+            modelBuilder.ApplyConfiguration(new ConviteMap());
             modelBuilder.ApplyConfiguration(new Campanha_JogadorMap());
             modelBuilder.ApplyConfiguration(new PersonagemMap());
             modelBuilder.ApplyConfiguration(new AtributoMap());

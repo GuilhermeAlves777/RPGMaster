@@ -50,11 +50,14 @@ namespace RPGMaster.Service
 
             usu.senha_hash = hasher.HashPassword(usu, senha);
 
-            var listaUsuario = _usuarioRepository.ObterTodos();
-            var existe = listaUsuario.Any(u => u.CPF == usu.CPF || u.user == usu.user);
+            if (_usuarioRepository.ExisteCpf(cpf))
+                throw new Exception("Já existe um usuário com esse CPF no sistema");
 
-            if (existe)
-                throw new Exception("Esse CPF já está registrado dentro do sistema");
+            if (_usuarioRepository.ExisteEmail(email))
+                throw new Exception("Já existe um usuário com esse e-mail no sistema");
+
+            if (_usuarioRepository.ExisteUser(user))
+                throw new Exception("Já existe um usuário com esse user no sistema");
 
             var result = _usuarioRepository.Cadastrar(usu);
             return result;

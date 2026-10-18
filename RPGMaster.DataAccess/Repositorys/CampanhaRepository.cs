@@ -73,7 +73,7 @@ namespace RPGMaster.DataAccess.Repositorys
         public List<CampanhaDto> ObterPorJogador(long idJogador)
         {
             return _context.Campanhas.AsNoTracking()
-                .Where(c => c.CampanhaJogadores.Any(cj => cj.Id_Usuario == idJogador || c.ID_Criador == idJogador))
+                .Where(c => c.ID_Criador == idJogador || c.CampanhaJogadores.Any(cj => cj.Id_Usuario == idJogador ))
                 .Select(c => new CampanhaDto
                 {
                     Id_Campanha = c.ID_Campanha,

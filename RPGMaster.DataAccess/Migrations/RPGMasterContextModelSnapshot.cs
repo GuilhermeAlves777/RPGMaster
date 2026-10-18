@@ -171,6 +171,41 @@ namespace RPGMaster.DataAccess.Migrations
                     b.ToTable("CLASSE_ATRIBUTO", (string)null);
                 });
 
+            modelBuilder.Entity("RPGMaster.Model.Convite", b =>
+                {
+                    b.Property<long>("Id_Convite")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("ID_CONVITE");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("ATIVO");
+
+                    b.Property<string>("Codigo")
+                        .IsRequired()
+                        .HasMaxLength(12)
+                        .HasColumnType("TEXT")
+                        .HasColumnName("CODIGO");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("CRIADO_EM");
+
+                    b.Property<long>("Id_Campanha")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("ID_CAMPANHA");
+
+                    b.HasKey("Id_Convite");
+
+                    b.HasIndex("Codigo")
+                        .IsUnique();
+
+                    b.HasIndex("Id_Campanha");
+
+                    b.ToTable("CONVITE", (string)null);
+                });
+
             modelBuilder.Entity("RPGMaster.Model.Item", b =>
                 {
                     b.Property<long>("Id_Item")
@@ -617,6 +652,17 @@ namespace RPGMaster.DataAccess.Migrations
                     b.Navigation("Atributo");
 
                     b.Navigation("Classe");
+                });
+
+            modelBuilder.Entity("RPGMaster.Model.Convite", b =>
+                {
+                    b.HasOne("RPGMaster.Model.Campanha", "Campanha")
+                        .WithMany()
+                        .HasForeignKey("Id_Campanha")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Campanha");
                 });
 
             modelBuilder.Entity("RPGMaster.Model.Item", b =>

@@ -52,6 +52,9 @@ builder.Services.AddScoped<CampanhaRepository>();
 builder.Services.AddScoped<CampanhaJogadorService>();
 builder.Services.AddScoped<CampanhaJogadorRepository>();
 
+builder.Services.AddScoped<ConviteService>();
+builder.Services.AddScoped<ConviteRepository>();
+
 builder.Services.AddScoped<PersonagemService>();
 builder.Services.AddScoped<PersonagemRepository>();
 

@@ -22,6 +22,15 @@ namespace RPGMaster.DataAccess.Repositorys
             return _context.SaveChanges() > 0;
         }
 
+        public bool ExisteUser(string user) =>
+            _context.Usuarios.Any(u => u.user == user);
+
+        public bool ExisteCpf (string cpf) =>
+            _context.Usuarios.Any(u => u.CPF == cpf);
+
+        public bool ExisteEmail(string email) =>
+            _context.Usuarios.Any(u => u.email == email);
+
         public List<Usuario> ObterTodos()
         {
             return _context.Usuarios.ToList();
