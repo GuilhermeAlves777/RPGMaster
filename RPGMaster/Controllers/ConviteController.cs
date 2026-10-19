@@ -46,7 +46,7 @@ namespace RPGMaster.Controllers
         {
             var result = _conviteService.ObterConvite(Codigo);
 
-            if (result != null) BadRequest("Esse convite não existe");
+            if (result == null) return BadRequest("Esse convite não existe");
 
             return Ok(result);
         }
@@ -57,7 +57,7 @@ namespace RPGMaster.Controllers
         {
             var result = _conviteService.AceiteConvite(Codigo);
 
-            if(!result) BadRequest("Esse convite não existe");
+            if(!result) return BadRequest("Esse convite não existe");
 
             return Ok("Convite aceito");
         }
