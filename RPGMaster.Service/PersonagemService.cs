@@ -27,19 +27,20 @@ namespace RPGMaster.Service
         public PersonagemDetalheDto? ObterPorId(long idPersonagem, long idCampanha) =>
             _personagemRepository.ObterPorIdFront(idPersonagem, idCampanha);
 
-        public bool CriarPersonagem (string nome, int nivel, long idJogador, int vidaMaxima, int ManaMaxima, long idCampanha, long idRaca, long idClasse)
+        public bool CriarPersonagem (string nome, int nivel, long idJogador, int vidaMaxima, int ManaMaxima, long idCampanha, long idRaca, long idClasse, bool ehNPC)
         {
             if (nome == "") throw new Exception("O personagem precisa ter um nome");
             if (nivel <= 0) throw new Exception("O nível do personagem tem que ser maior que 0");
 
             var existeCampanhaJogador = _campanhaJogadorRepository.ObterJogador(idCampanha, idJogador);
 
-            if (existeCampanhaJogador == null) throw new Exception("Esse jogador não está na campanha"); 
+            if (existeCampanhaJogador == null 
+                && !ehNPC) throw new Exception("Esse jogador não está na campanha"); 
 
             var personagem = new Personagem
             {
                 Nome = nome,
-                Id_Jogador = idJogador != 0 ? idJogador : 0,
+                Id_Jogador = idJogador != 0 ? idJogador : null,
                 Id_Campanha = idCampanha,
                 VidaMaxima = vidaMaxima,
                 VidaAtual = vidaMaxima,
@@ -48,7 +49,7 @@ namespace RPGMaster.Service
                 Id_Raca = idRaca,
                 Id_Classe = idClasse,
                 Nivel = nivel,
-                EhNpc = idJogador == 0 ? true : false
+                EhNpc = ehNPC
             };
 
             return _personagemRepository.CriarPersonagem(personagem);

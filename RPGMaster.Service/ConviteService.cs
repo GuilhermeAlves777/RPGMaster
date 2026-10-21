@@ -124,7 +124,6 @@ namespace RPGMaster.Service
             if (!ret) throw new Exception("Não foi possivel adicionar o jogador a campanha");
 
             return ret;
-
         }
     }
 }

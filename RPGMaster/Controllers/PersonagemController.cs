@@ -42,9 +42,9 @@ namespace RPGMaster.Controllers
 
         [HttpPost("api/Personagem/Criar")]
 
-        public IActionResult CriarPersonagem (string nome, int nivel, long idJogador, int vidaMaxima, int ManaMaxima, long idCampanha, long idRaca, long idClasse)
+        public IActionResult CriarPersonagem (string nome, int nivel, long idJogador, int vidaMaxima, int ManaMaxima, long idCampanha, long idRaca, long idClasse, bool ehNPC)
         {
-            var result = _personagemService.CriarPersonagem(nome, nivel, idJogador, vidaMaxima, ManaMaxima, idCampanha, idRaca, idClasse);
+            var result = _personagemService.CriarPersonagem(nome, nivel, idJogador, vidaMaxima, ManaMaxima, idCampanha, idRaca, idClasse, ehNPC);
 
             if (result)
                 return Ok("Personagem Criado");
