@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -36,6 +36,14 @@
     <ProjectReference Include="..\RPGMaster.DataAccess\RPGMaster.DataAccess.csproj" />
     <ProjectReference Include="..\RPGMaster.Model\RPGMaster.Model.csproj" />
     <ProjectReference Include="..\RPGMaster.Service\RPGMaster.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\aguil\source\repos\RPGMaster\RPGMaster\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\aguil\source\repos\RPGMaster\RPGMaster\.editorconfig" />
   </ItemGroup>
 
 </Project>

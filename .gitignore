@@ -12,3 +12,7 @@ obj/
 .idea/
 .vscode/
 EOF
+
+*.db
+*.db-shm
+*.db-wal

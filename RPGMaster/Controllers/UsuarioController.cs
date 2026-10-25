@@ -35,9 +35,10 @@ namespace RPGMaster.Controllers
         }
 
         [HttpPost("Criar")]
-        public IActionResult CadastrarUsuarios(string nome, string sobrenome, string user, string senha, string email, string cpf, DateTime Dn)
+        public IActionResult CadastrarUsuarios([FromBody] CriarUsuario request)
         {
-            var result = _usuarioService.CadastrarUsuario(nome, sobrenome, user, senha, email, cpf, Dn);
+            var result = _usuarioService.CadastrarUsuario(request.nome, request.sobrenome, request.user, request.senha, request.email,
+                request.CPF, request.Dn);
             if (result)
                 return Ok("Usuario cadastrado com sucesso");
             else
@@ -115,6 +116,18 @@ namespace RPGMaster.Controllers
             return BadRequest("Houve um erro!");
         }
 
+
+    }
+
+    public class CriarUsuario
+    {
+        public string nome { get; set; }
+        public string sobrenome { get; set; }
+        public string user { get; set; }
+        public string senha { get; set; }
+        public string email { get; set; }
+        public string CPF { get; set; }
+        public DateTime Dn { get; set; }
 
     }
     

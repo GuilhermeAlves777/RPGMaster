@@ -27,9 +27,9 @@ namespace RPGMaster.Controllers
         }
 
         [HttpPost("Adicionar")]
-        public IActionResult Adicionar (long idPersonagem, long idCampanha, long idItem, int quant)
+        public IActionResult Adicionar([FromBody] AdicionarItem request)
         {
-            var ret = _service.Adicionar(idPersonagem, idCampanha, idItem, quant);
+            var ret = _service.Adicionar(request.idPersonagem, request.idCampanha, request.idItem, request.quantidade);
 
             return ret ? Ok("Item recebido pelo personagem") : BadRequest("Não foi possível o personagem obter o item"); 
         }
@@ -49,6 +49,14 @@ namespace RPGMaster.Controllers
 
             return ret ? Ok("O personagem não possui mais esse item") : BadRequest("Não foi possível excluir o item do personagem");
         }       
+    }
+
+    public class AdicionarItem
+    {
+        public long idCampanha { get; set; }
+        public long idItem { get; set; }
+        public long idPersonagem { get; set; }
+        public int quantidade { get; set; }
     }
 
     public class EditarItemRequest

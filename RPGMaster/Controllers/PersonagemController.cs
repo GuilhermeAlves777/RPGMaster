@@ -42,9 +42,10 @@ namespace RPGMaster.Controllers
 
         [HttpPost("api/Personagem/Criar")]
 
-        public IActionResult CriarPersonagem (string nome, int nivel, long idJogador, int vidaMaxima, int ManaMaxima, long idCampanha, long idRaca, long idClasse, bool ehNPC)
+        public IActionResult CriarPersonagem ([FromBody] CriarPersonagem request)
         {
-            var result = _personagemService.CriarPersonagem(nome, nivel, idJogador, vidaMaxima, ManaMaxima, idCampanha, idRaca, idClasse, ehNPC);
+            var result = _personagemService.CriarPersonagem(request.nome, request.nivel, request.idJogador, request.vidaMaxima, 
+                request.manaMaxima, request.idCampanha, request.idRaca, request.idClasse, request.ehNPC);
 
             if (result)
                 return Ok("Personagem Criado");
@@ -105,6 +106,19 @@ namespace RPGMaster.Controllers
             else
                 return BadRequest("Não foi possivel editar o personagem");
         }
+    }
+
+    public class CriarPersonagem
+    {
+        public string nome { get; set; }
+        public int nivel { get; set; }
+        public long idJogador { get; set; }
+        public int vidaMaxima { get; set; }
+        public int manaMaxima { get; set; }
+        public long idCampanha { get; set; }
+        public long idRaca { get; set; }
+        public long idClasse { get; set; }
+        public bool ehNPC { get; set; }
     }
 
     public class AlterarVidaRequest
