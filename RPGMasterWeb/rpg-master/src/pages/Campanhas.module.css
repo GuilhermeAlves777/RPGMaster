@@ -1,0 +1,106 @@
+.titulo {
+  margin: 0;
+  text-align: center;
+  font-size: 2rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: clamp(1.4rem, 6vw, 2rem);
+  letter-spacing: 0.1em;
+}
+
+.subtitulo {
+  margin: 0.25rem 0 2.5rem;
+  text-align: center;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.aviso,
+.erro {
+  text-align: center;
+  font-style: italic;
+}
+
+.erro {
+  color: var(--wax);
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  position: relative;
+  display: block;
+  height: 100%;
+  padding: 1.75rem 1.5rem 1.5rem;
+  color: var(--ink);
+  text-decoration: none;
+  background: rgba(242, 231, 201, 0.9);
+  border: 3px double var(--parchment-edge);
+  box-shadow:
+    0 6px 16px rgba(40, 22, 5, 0.35),
+    inset 0 0 30px rgba(138, 106, 59, 0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px) rotate(-0.4deg);
+  box-shadow:
+    0 12px 22px rgba(40, 22, 5, 0.45),
+    inset 0 0 30px rgba(138, 106, 59, 0.3);
+}
+
+/* marcador de mapa */
+.pin {
+  position: absolute;
+  top: 0.9rem;
+  right: 1rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #b2463c, var(--wax-dark));
+  box-shadow: 0 0 0 4px rgba(140, 47, 39, 0.2);
+}
+
+.nome {
+  margin: 0 1.5rem 0.5rem 0;
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+}
+
+.descricao {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--ink-soft);
+}
+
+@media (hover: none) {
+  .card:hover {
+    transform: none;
+  }
+}
+
+.acoesTopo {
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem 0 2.5rem;   /* AJUSTA: o último número é o espaço até as campanhas */
+}
+
+.botaoNova {
+  padding: 0.55rem 1.2rem;
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #f6e7c1;
+  background: linear-gradient(180deg, #a33a2a, #6b1f14);
+  border: 1px solid #5c1a0f;
+  border-radius: 4px;
+}

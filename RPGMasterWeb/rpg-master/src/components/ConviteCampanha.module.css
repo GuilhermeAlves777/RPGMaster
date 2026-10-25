@@ -1,0 +1,54 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.linha {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.link {
+  flex: 1;
+  min-width: 0;
+  padding: 0.45rem 0.6rem;
+  font: inherit;
+  font-size: 0.85rem;
+  color: inherit;
+  background: rgba(255, 248, 225, 0.7);
+  border: 1px solid rgba(120, 85, 40, 0.6);
+  border-radius: 4px;
+}
+
+.btn {
+  padding: 0.45rem 1rem;
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #f6e7c1;
+  background: linear-gradient(180deg, #a33a2a, #6b1f14);
+  border: 1px solid #5c1a0f;
+  border-radius: 4px;
+}
+
+.btn:disabled, .novo:disabled { opacity: 0.5; cursor: default; }
+
+.novo {
+  align-self: flex-start;
+  padding: 0;
+  font-family: var(--font-title);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--ink-soft);
+  background: none;
+  border: none;
+  text-decoration: underline;
+}
+
+.info { margin: 0; font-style: italic; color: var(--ink-soft); }
+.erro { color: #8a2a1a; font-style: italic; }

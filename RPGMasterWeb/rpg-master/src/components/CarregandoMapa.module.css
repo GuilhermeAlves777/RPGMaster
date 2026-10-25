@@ -1,0 +1,91 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.mapa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90px;
+}
+
+.rolo {
+  width: 14px;
+  height: 100%;
+  border-radius: 7px;
+  background: linear-gradient(90deg, #6b4a24, #b8884a 45%, #6b4a24);
+  box-shadow: 0 2px 6px rgba(60, 40, 15, 0.4);
+  z-index: 1;
+}
+
+.folha {
+  height: 80px;
+  width: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #efe0b8;
+  border-top: 1px solid rgba(120, 85, 40, 0.6);
+  border-bottom: 1px solid rgba(120, 85, 40, 0.6);
+  animation: abrir 2.6s ease-in-out infinite;
+}
+
+.folha svg { flex: none; }
+
+.rota {
+  fill: none;
+  stroke: #a33a2a;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: tracar 2.6s ease-in-out infinite;
+}
+
+.xis {
+  fill: none;
+  stroke: #6b1f14;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  opacity: 0;
+  animation: marcar 2.6s ease-in-out infinite;
+}
+
+.texto {
+  margin: 0;
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+@keyframes abrir {
+  0%   { width: 0; }
+  35%  { width: 120px; }
+  85%  { width: 120px; }
+  100% { width: 0; }
+}
+
+@keyframes tracar {
+  0%, 30% { stroke-dashoffset: 100; }
+  65%, 85% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 100; }
+}
+
+@keyframes marcar {
+  0%, 62% { opacity: 0; }
+  72%, 85% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .folha, .rota, .xis { animation: none; }
+  .folha { width: 120px; }
+  .rota { stroke-dashoffset: 0; }
+  .xis { opacity: 1; }
+}

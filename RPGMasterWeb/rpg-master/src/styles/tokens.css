@@ -1,0 +1,17 @@
+:root {
+  --parchment: #e9dbb8;
+  --parchment-light: #f2e7c9;
+  --parchment-dark: #d2bd8c;
+  --parchment-edge: #8a6a3b;
+
+  --ink: #2f2114;
+  --ink-soft: #5b4630;
+
+  --wax: #8c2f27;
+  --wax-dark: #6a211b;
+  --gold: #b8893a;
+  --moss: #4a5d45;
+
+  --font-title: 'Cinzel', Georgia, serif;
+  --font-body: 'IM Fell English', Georgia, serif;
+}

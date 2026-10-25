@@ -1,0 +1,47 @@
+.campos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.rotulo {
+  font-family: var(--font-title);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.45rem 0.5rem;
+  font: inherit;
+  color: inherit;
+  background: rgba(255, 248, 225, 0.8);
+  border: 1px solid rgba(120, 85, 40, 0.6);
+  border-radius: 4px;
+  outline: none;
+}
+
+.area { composes: input; resize: vertical; }
+
+.input:focus, .area:focus { border-color: #8a2a1a; }
+
+.cancelar {
+  padding: 0;
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--ink-soft);
+  background: none;
+  border: none;
+}

@@ -1,0 +1,38 @@
+.pagina {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.voltar {
+  align-self: flex-start;
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.titulo {
+  margin: -0.5rem 0 0;
+  font-size: clamp(1.4rem, 6vw, 2rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* faixa de personagens com rolagem lateral */
+.faixa {
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+
+.grade {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+}
